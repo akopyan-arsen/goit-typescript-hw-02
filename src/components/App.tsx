@@ -10,15 +10,20 @@ import Empty from "./Empty/Empty";
 import ImageModal from "./ImageModal/ImageModal";
 
 const App = () => {
+  type Image = { urls: string; description: string; alt_description: string;};
+
+type ImageModal = { urls: string; description: string; alt_description: string;};
+
+
   const [images, setImages] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(false);
-  const [page, setPage] = useState(1);
-  const [query, setQuery] = useState("");
-  const [showBtn, setShowBtn] = useState(false);
-  const [empty, setEmpty] = useState(false);
-  const [modalIsOpen, setIsOpen] = useState(false);
-  const [imageModal, setImageModal] = useState(null);
+  const [loading, setLoading] = useState<boolean>(false);
+  const [error, setError] = useState<boolean>(false);
+  const [page, setPage] = useState<number>(1);
+  const [query, setQuery] = useState<string>("");
+  const [showBtn, setShowBtn] = useState<boolean>(false);
+  const [empty, setEmpty] = useState<boolean>(false);
+  const [modalIsOpen, setIsOpen] = useState<boolean>(false);
+  const [imageModal, setImageModal] = useState<ImageModal[] | null>(null);
 
   useEffect(() => {
     if (query === "") {

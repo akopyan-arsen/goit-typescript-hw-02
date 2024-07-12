@@ -3,24 +3,19 @@ import SearchBar from "./SearchBar/SearchBar";
 import ImageGallery from "./ImageGallery/ImageGallery";
 import ErrorMessage from "./ErrorMessage/ErrorMessage";
 import Loader from "./Loader/Loader";
-import { fetchImagesWithTopic } from "./images-api";
+import { fetchImagesWithTopic} from "./images-api";
+import { Image } from "./App.types";
 import { Toaster } from "react-hot-toast";
 import LoadMoreBtn from "./LoadMoreBtn/LoadMoreBtn";
 import Empty from "./Empty/Empty";
 import ImageModal from "./ImageModal/ImageModal";
 
+interface FetchImagesResponse {
+  results: Image[];
+  total_pages: number;
+}
+
 const App = () => {
-  interface Image {
-    urls: { regular: string };
-    description: string;
-    alt_description: string;
-  }
-
-  interface FetchImagesResponse {
-    results: Image[];
-    total_pages: number;
-  }
-
   const [images, setImages] = useState<Image[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);

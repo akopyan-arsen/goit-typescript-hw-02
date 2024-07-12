@@ -1,7 +1,9 @@
 import Modal from "react-modal";
-Modal.setAppElement("#root");
 import css from "./ImageModal.module.css";
 import { useEffect } from "react";
+import { ImageModalProps } from "./ImageModal.types";
+
+
 
 const customStyles = {
   content: {
@@ -15,10 +17,10 @@ const customStyles = {
     padding: "0",
     borderRadius: "20px",
   },
-  overlay: { backgroundColor: "rgb(0, 0, 0, 0.9)" },
+  overlay: { backgroundColor: "rgba(0, 0, 0, 0.9)" },
 };
 
-const ImageModal = ({ closeModal, isOpen, imageModal }) => {
+const ImageModal: React.FC<ImageModalProps> = ({ isOpen, closeModal, imageModal }) => {
   useEffect(() => {
     if (isOpen) {
       document.body.classList.add(css.noScroll);
@@ -36,8 +38,8 @@ const ImageModal = ({ closeModal, isOpen, imageModal }) => {
       isOpen={isOpen}
       onRequestClose={closeModal}
       style={customStyles}
+      contentLabel="Image Modal"
       shouldCloseOnOverlayClick={true}
-      imageModal={imageModal}
     >
       {imageModal && (
         <div>
